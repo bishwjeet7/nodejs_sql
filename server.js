@@ -1,6 +1,8 @@
 const exceljs = require('exceljs');
 const xlsx = require('xlsx');
 var express = require('express');
+const cors = require('cors');
+
 
 const Model = require('./db');
 
@@ -121,7 +123,7 @@ async function importData() {
             cable: cable_name,
             timestamp: timestamp,
             inverse_velocity: 1 / velocity,
-
+            deformation: deformation
           }
 
           const cr =await Model.create(obj);
@@ -149,6 +151,15 @@ async function importData() {
     })
   }
 }
+
+
+app.use(cors({
+  origin: 'http://localhost:19006',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+}));
+
 
 app.get("/", (req, res) => {
   res.send("WELCOME TO MY PROJECT");
@@ -193,6 +204,6 @@ app.get("/getData" , async(req, res)=>{
 
 })
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log('App listening on port 4000')
 });

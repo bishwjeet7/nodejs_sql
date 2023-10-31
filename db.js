@@ -1,10 +1,9 @@
 const { Sequelize , DataTypes } = require('sequelize');
+require('dotenv').config();
 
-// mysql://root:''@localhost:3306/sci_db
-
-const sequelize = new Sequelize("sci_db" , "root" , "", {
+const sequelize = new Sequelize(process.env.DB_DBNAME , process.env.DB_USERNAME , process.env.DB_PASSWORD, {
     dialect:"mysql",
-    host:"localhost",
+    host:process.env.DB_HOST,
     logging: false 
 });
 
@@ -36,6 +35,9 @@ const sequelize = new Sequelize("sci_db" , "root" , "", {
         type: DataTypes.DATE,
       },
     inverse_velocity: {
+        type: DataTypes.DOUBLE,
+      },
+    deformation: {
         type: DataTypes.DOUBLE,
       },
   });
