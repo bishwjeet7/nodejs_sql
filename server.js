@@ -154,11 +154,12 @@ async function importData() {
 
 
 app.use(cors({
-  origin: 'https://mining-qosx.onrender.com',
+  origin: ['https://mining-gamma.vercel.app', 'http://localhost:19006'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
 }));
+
 
 
 app.get("/", (req, res) => {
