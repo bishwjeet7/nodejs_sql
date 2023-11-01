@@ -154,7 +154,7 @@ async function importData() {
 
 
 app.use(cors({
-  origin: 'http://localhost:19006',
+  origin: 'https://mining-qosx.onrender.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
